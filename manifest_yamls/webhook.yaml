@@ -1,0 +1,36 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: mutate-pod-webhook
+webhooks:
+  - admissionReviewVersions:
+      - v1
+      - v1beta1
+    clientConfig:
+      caBundle: >-
+        <BASE64 ENCODED CA BUNDLE THAT USED FOR INITALL HANDSHAKE WITH YOUR WEBHOOK HTTP SERVER GOES HERE>
+      service:
+        name: pod-mutator-service
+        namespace: webhook-poc
+        path: /mutate
+        port: 443
+    failurePolicy: Fail
+    matchPolicy: Equivalent
+    name: pod-mutator-service.webhook-poc.svc
+    namespaceSelector:
+      matchLabels:
+        name: webhook-poc
+    objectSelector: {}
+    reinvocationPolicy: Never
+    rules:
+      - apiGroups:
+          - ''
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+        resources:
+          - pods
+        scope: Namespaced
+    sideEffects: None
+    timeoutSeconds: 10
