@@ -12,7 +12,7 @@ Below are the contents of the project.
    Creates a service listening on 443 that routes traffic to the backend webhook-server pod.
    
 3. Secrets yaml (manifest_yamls/secret-webhook-cert-key.yaml):
-   Creates a secret with couple of entries, one to store the certificate with the CN and SAN as 'pod-mutator-service.webhook-poc.svc' (<servicename>-<namespace>.svc) and the other to store the private key. Both the cert and key will be mounted to the webhook-server pod to have our HTTP server (webhook-server pod) load them during startup.
+   Creates a secret with couple of entries, one to store the certificate with the CN and SAN as 'pod-mutator-service.webhook-poc.svc' (@@servicename@@-@@namespace@@.svc) and the other to store the private key. Both the cert and key will be mounted to the webhook-server pod to have our HTTP server (webhook-server pod) load them during startup.
 
 4. Webhook server (manifest_yamls/deployment-webhook-server.yaml):
    Creates a deplyment object that launches the webhook-server pod, this is where all the action happens. The pod hosts a HTTP server listens on port 8443 and only handles POST calls on /mutate path/resource (make sure you configure the same path on the mutating webhook yaml).
