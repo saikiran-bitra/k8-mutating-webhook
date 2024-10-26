@@ -74,3 +74,5 @@ Docker for building the webhook server image
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
 
+For any questions or issues, feel free to open an issue in the repository. Happy coding!
+
