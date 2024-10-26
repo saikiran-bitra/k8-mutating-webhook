@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pod-mutator-service
+  namespace: webhook-poc
+spec:
+  ports:
+    - port: 443
+      protocol: TCP
+      targetPort: 8443
+  selector:
+    app: pod-mutator
+  sessionAffinity: None
+  type: ClusterIP
